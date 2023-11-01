@@ -1,7 +1,12 @@
+using App.Web.Mvc.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DBConStr")));
 
 var app = builder.Build();
 
@@ -23,16 +28,27 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-app.MapControllerRoute(
-	name: "Admin",
-	pattern: "Admin/{controller=AdminHome}/{action=Index}/{id?}");
+
+//app.MapControllerRoute(
+//    name: "Login",
+//    pattern: "Auth/{controller=Auth}/{action=Login}/{id?}");
+
+//app.MapControllerRoute(
+//    name: "Register",
+//    pattern: "Auth/{controller=Auth}/{action=Register}/{id?}");
+
+//app.MapControllerRoute(
+//    name: "Auth",
+//    pattern: "Auth/{controller=Auth}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
-	name: "PageDetail",
-	pattern: "PageDetail/{controller=Page}/{action=Detail}/{id?}");
+    name: "PageDetail",
+    pattern: "PageDetail/{controller=Page}/{action=Detail}/{id?}");
 
 app.MapControllerRoute(
-	name: "BlogDetail",
-	pattern: "BlogDetail/{controller=Blog}/{action=Detail}/{id?}");
+    name: "BlogDetail",
+    pattern: "BlogDetail/{controller=Blog}/{action=Detail}/{id?}");
+
+
 
 app.Run();
