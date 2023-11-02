@@ -9,12 +9,14 @@ namespace App.Web.Mvc.Data.Entity
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+
         [Required(ErrorMessage = "{0} boş geçilemez.")]
         [DisplayName("Kategori Adı")]
         [StringLength(40, ErrorMessage ="{0} {1} karakterden fazla olamaz!")]
-        [MinLength(10, ErrorMessage ="{0} en az {1} karakter olanilir!")]
-        public string CategoryName { get; set; }
-        public List<CategoryPost> CategoryPosts { get; set; }
+        [MinLength(10, ErrorMessage ="{0} en az {1} karakter olabilir!")]
 
+        public string CategoryName { get; set; }
+
+        public List<CategoryPost> CategoryPosts { get; set; }
     }
 }
