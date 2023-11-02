@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace App.Web.Mvc.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231101124951_FirstMigration")]
-    partial class FirstMigration
+    [Migration("20231102123245_Gorev1Migration")]
+    partial class Gorev1Migration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -77,6 +77,16 @@ namespace App.Web.Mvc.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("PageContext")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("PageTitle")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("PostId")
                         .HasColumnType("int");
@@ -232,20 +242,20 @@ namespace App.Web.Mvc.Migrations
                         new
                         {
                             Id = 1,
-                            UserEmail = "kartal@gmail.com",
-                            UserName = "Kartal",
-                            UserNick = "Stolas",
-                            UserPassword = "1234",
-                            UserSurname = "Kaptan"
+                            UserEmail = "Teo@xyz.com",
+                            UserName = "Teoman",
+                            UserNick = "Teo",
+                            UserPassword = "123456",
+                            UserSurname = "Yakupoğlu"
                         },
                         new
                         {
                             Id = 2,
-                            UserEmail = "LordVader4951@hotmail.com",
-                            UserName = "Darth",
-                            UserNick = "Sith",
-                            UserPassword = "Padme495172",
-                            UserSurname = "Vader"
+                            UserEmail = "sebnem@xyz.com",
+                            UserName = "Sebnem",
+                            UserNick = "Sebo",
+                            UserPassword = "123456",
+                            UserSurname = "Ferah"
                         });
                 });
 
