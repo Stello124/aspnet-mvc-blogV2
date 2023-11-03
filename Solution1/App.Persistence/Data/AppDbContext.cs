@@ -22,6 +22,10 @@ namespace App.Persistence.Data
                 .HasOne(bc => bc.Post)
                 .WithMany(c => c.CategoryPosts)
                 .HasForeignKey(bc => bc.PostId);
+            modelBuilder.Entity<Post>()
+                .HasMany(p => p.Images)
+                .WithOne(i => i.Post)
+                .HasForeignKey(pi => pi.PostId); 
 
             //Seed database
             DbSeeder.Seed(modelBuilder);
